@@ -1,0 +1,271 @@
+local combo = {
+menu.Combo( "Anime Tyans","Up", {"Off" ,"Astolfo", "Megumin", "Rias DXD", "Sitting Loli", "Akeno Himejima DXD", "Hentai #1", "Hentai #2", "Hentai #3"}, 0, "Tooltip"),
+menu.Combo( "Anime Tyans","Left", {"Off" ,"Eromanga Sensei", "Cute Loli", "Cute Neko Loli", "Kawaii Blonde Girl", "Hentai #1"}, 0, "Tooltip"),
+menu.Combo( "Anime Tyans","Right", {"Off", "Eromanga", "Tyan with umbrella", "Neko Tyan", "Undressed Loli", "Hentai #1"}, 0, "Tooltip")
+}
+
+local custompng = {
+menu.Switch("Custom Anime Girl", "Enable", false, "Tooltip"),
+menu.TextBox("Custom Anime Girl", "PNG URL", 100, "", "Tooltip"),
+menu.SliderInt("Custom Anime Girl", "Width", 500, 200, 3000, "Tooltip"),
+menu.SliderInt("Custom Anime Girl", "Height", 500, 200, 3000, "Tooltip"),
+menu.SliderFloat("Custom Anime Girl", "Scale", 1.0, 0.1, 1.0, "Tooltip"),
+menu.SliderInt("Custom Anime Girl", "X correction", 0, -1000, 1000, "Tooltip"),
+menu.SliderInt("Custom Anime Girl", "Y correction", 0, -1000, 1000, "Tooltip")
+}
+
+local otherfeatures = {
+menu.Switch("Other cool features", "Bubble Hitsound", false, "Tooltip"),
+menu.Switch("Other cool features", "AnimeGang.cc Clantag", false, "Tooltip"),
+menu.Switch("Other cool features", "Anime Killcount", false, "Tooltip")
+}
+
+local imagesize = {
+Vector2.new(754 / 3.8, 1220 / 3.8),
+Vector2.new(663 / 4, 1458 / 4),
+Vector2.new(1138 / 5, 1614 / 5),
+Vector2.new(581 / 3, 966 / 3),
+Vector2.new(1211 / 3, 804 / 3),
+Vector2.new(850 / 3, 1201 / 3),
+Vector2.new(1357 / 5, 1925 / 5),
+Vector2.new(368 / 1.5, 581 / 1.5),
+Vector2.new(749 / 2.9, 1200 / 2.9),
+Vector2.new(1024 / 5, 1571 / 5),
+Vector2.new(999 / 2, 800 / 2),
+Vector2.new(436 / 1.5, 604 / 1.5),
+Vector2.new(462 / 2, 689 / 2),
+Vector2.new(1600 / 4, 1127 / 4),
+Vector2.new(999 / 3, 799 / 3),
+Vector2.new(1600 / 4, 1221 / 4),
+Vector2.new(1497 / 4, 1771 / 4),
+Vector2.new(560 / 2, 947 / 2),
+[99]=Vector2.new(809 / 15, 844 / 15) -- killcount
+}
+
+local url = {
+"https://steamuserimages-a.akamaihd.net/ugc/780728056600893177/5D12C67046AC71F22CB243D79569008D49602AD9/?imw=512&amp;imh=828&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true",
+"https://cdn.discordapp.com/attachments/798169474716925962/798337585495539732/ecchi-drawing-human-4.png",
+"https://i.pinimg.com/originals/33/fb/7b/33fb7b953c5f533229067491a1f67715.png",
+"https://cdn.discordapp.com/attachments/732006862639071234/797923978643505203/Anime-Eromanga-Sensei-Izumi-Sagiri-greem-bang-4228127.png",
+"https://avatanplus.com/files/resources/original/56fba3574e923153c6f60d1a.png",
+"https://cdn.discordapp.com/attachments/797865975311237140/797912124919382056/pngwing.com.png",
+"https://cdn.discordapp.com/attachments/732006862639071234/797937979044659230/6XeEEF.png",
+"https://cdn.discordapp.com/attachments/797865975311237140/797942053925290004/57af84db1c119156859ef7eb.png",
+"https://cdn.discordapp.com/attachments/732006862639071234/797944779420729394/58653c42cff111594b736524.png",
+"https://cdn.discordapp.com/attachments/798169474716925962/798374483617644564/kawaii_anime_girl_tie_hair__3_by_alyssaholt13_dchkvxy-fullview.png",
+"https://cdn.discordapp.com/attachments/798169474716925962/798365000300363806/blonde_anime_girl_render_by_snowinwinter_d92r0fy-pre.png",
+"https://cdn.discordapp.com/attachments/798169474716925962/798372062300733440/xQhcstKMZYg.png",
+"https://cdn.discordapp.com/attachmvents/798169474716925962/798664916071481355/DxD_-_Contest_III_Akeno_Himejima_13.png",
+"https://cdn.discordapp.com/attachments/732006862639071234/799780152384552990/anim4.png",
+"https://cdn.discordapp.com/attachments/732006862639071234/799780148353826816/anim3.png",
+"https://cdn.discordapp.com/attachments/732006862639071234/799780158067441734/anim1.png",
+"https://cdn.discordapp.com/attachments/732006862639071234/799780154574503956/anim5.png",
+"https://s02.yapfiles.ru/files/392204/213201_animal_ears11.png",
+[99]="https://cdn.discordapp.com/attachments/732006862639071234/797937979044659230/6XeEEF.png" -- killcount
+}
+
+local bytes = {
+http.Get(url[1]),
+http.Get(url[2]),
+http.Get(url[3]),
+http.Get(url[4]),
+http.Get(url[5]),
+http.Get(url[6]),
+http.Get(url[7]),
+http.Get(url[8]),
+http.Get(url[9]),
+http.Get(url[10]),
+http.Get(url[11]),
+http.Get(url[12]),
+http.Get(url[13]),
+http.Get(url[14]),
+http.Get(url[15]),
+http.Get(url[16]),
+http.Get(url[17]),
+http.Get(url[18]),
+[99]=http.Get(url[99])
+}
+
+local imageloaded = {
+g_Render:LoadImage(bytes[1], imagesize[1]),
+g_Render:LoadImage(bytes[2], imagesize[2]),
+g_Render:LoadImage(bytes[3], imagesize[3]),
+g_Render:LoadImage(bytes[4], imagesize[4]),
+g_Render:LoadImage(bytes[5], imagesize[5]),
+g_Render:LoadImage(bytes[6], imagesize[6]),
+g_Render:LoadImage(bytes[7], imagesize[7]),
+g_Render:LoadImage(bytes[8], imagesize[8]),
+g_Render:LoadImage(bytes[9], imagesize[9]),
+g_Render:LoadImage(bytes[10], imagesize[10]),
+g_Render:LoadImage(bytes[11], imagesize[11]),
+g_Render:LoadImage(bytes[12], imagesize[12]),
+g_Render:LoadImage(bytes[13], imagesize[13]),
+g_Render:LoadImage(bytes[14], imagesize[14]),
+g_Render:LoadImage(bytes[15], imagesize[15]),
+g_Render:LoadImage(bytes[16], imagesize[16]),
+g_Render:LoadImage(bytes[17], imagesize[17]),
+g_Render:LoadImage(bytes[18], imagesize[18]),
+[99]=g_Render:LoadImage(bytes[99], imagesize[99]) -- killcount
+}
+
+local bytes_custom = http.Get(custompng[2]:GetString())
+local customgirlwidth = custompng[3]:GetInt()
+local customgirlheight = custompng[4]:GetInt()
+local customgirlscale = custompng[5]:GetFloat()                
+local image_size_custom = Vector2.new(customgirlwidth * customgirlscale, customgirlheight * customgirlscale)
+local image_loaded_custom = g_Render:LoadImage(bytes_custom, image_size_custom)
+
+--clantag
+ffi.cdef[[
+    typedef int(__fastcall* clantag_t)(const char*, const char*);
+]]
+
+local set_clantag = ffi.cast("clantag_t", utils.PatternScan("engine.dll", "53 56 57 8B DA 8B F9 FF 15"))
+
+local tag = {
+[1] = "A",
+[2] = "Ani",
+[3] = "Anim",
+[4] = "Amime",
+[5] = "AnimeG",
+[6] = "AnimeGa",
+[7] = "AnimeGan",
+[8] = "AnimeGang",
+[9] = "AnimeGang.",
+[10] = "AnimeGang.c",
+[11] = "AnimeGang.cc",
+[12] = "AnimeGang.c",
+[13] = "AnimeGang.",
+[14] = "AnimeGang",
+[15] = "AnimeGan",
+[16] = "AnimeGa",
+[17] = "AnimeG",
+[18] = "Anime",
+[19] = "Anim",
+[19] = "Ani",
+[20] = "An",
+[21] = "A",
+}
+
+local function mod(a, b)
+  return a - math.floor(a/b)*b
+end
+-- clantag
+--killcount
+local screen_size = g_EngineClient:GetScreenSize()
+local killcount = 0
+--killcount
+
+local function animegirls()
+local menu_pos = g_Render:GetMenuPos()
+ if cheat.IsMenuVisible() then
+                if combo[1]:GetInt() == 1 then
+                g_Render:Image(imageloaded[1], Vector2.new(menu_pos.x, menu_pos.y-315), imagesize[1]) 
+                else if combo[1]:GetInt() == 2 then
+                g_Render:Image(imageloaded[2], Vector2.new(menu_pos.x+300, menu_pos.y-330), imagesize[2]) 
+                else if combo[1]:GetInt() == 3 then
+                g_Render:Image(imageloaded[3], Vector2.new(menu_pos.x+600, menu_pos.y-315), imagesize[3]) 
+                else if combo[1]:GetInt() == 4 then
+                g_Render:Image(imageloaded[10], Vector2.new(menu_pos.x, menu_pos.y-304), imagesize[10]) 
+                else if combo[1]:GetInt() == 5 then
+                g_Render:Image(imageloaded[13], Vector2.new(menu_pos.x, menu_pos.y-304), imagesize[13])
+                else if combo[1]:GetInt() == 6 then
+                g_Render:Image(imageloaded[14], Vector2.new(menu_pos.x-45, menu_pos.y-282), imagesize[14])
+                else if combo[1]:GetInt() == 7 then
+                g_Render:Image(imageloaded[15], Vector2.new(menu_pos.x+560, menu_pos.y-260), imagesize[15])
+                else if combo[1]:GetInt() == 8 then
+                g_Render:Image(imageloaded[16], Vector2.new(menu_pos.x+100, menu_pos.y-282), imagesize[16])
+                end end end end end end end end
+                if combo[2]:GetInt() == 1 then
+                g_Render:Image(imageloaded[4], Vector2.new(menu_pos.x-195, menu_pos.y+365), imagesize[4]) 
+                else if combo[2]:GetInt() == 2 then
+                g_Render:Image(imageloaded[5], Vector2.new(menu_pos.x-313, menu_pos.y+430), imagesize[5]) 
+                else if combo[2]:GetInt() == 3 then
+                g_Render:Image(imageloaded[6], Vector2.new(menu_pos.x-253, menu_pos.y+300), imagesize[6]) 
+                else if combo[2]:GetInt() == 4 then
+                g_Render:Image(imageloaded[11], Vector2.new(menu_pos.x-395, menu_pos.y+296), imagesize[11])
+                else if combo[2]:GetInt() == 5 then
+                g_Render:Image(imageloaded[18], Vector2.new(menu_pos.x-270, menu_pos.y+230), imagesize[18]) 
+                end end end end end
+                if combo[3]:GetInt() == 1 then
+                g_Render:Image(imageloaded[7], Vector2.new(menu_pos.x+800, menu_pos.y+300), imagesize[7])
+                else if combo[3]:GetInt() == 2 then
+                g_Render:Image(imageloaded[8], Vector2.new(menu_pos.x+800, menu_pos.y+300), imagesize[8]) 
+                else if combo[3]:GetInt() == 3 then
+                g_Render:Image(imageloaded[9], Vector2.new(menu_pos.x+800, menu_pos.y+277), imagesize[9]) 
+                else if combo[3]:GetInt() == 4 then
+                g_Render:Image(imageloaded[12], Vector2.new(menu_pos.x+800, menu_pos.y+290), imagesize[12])
+                else if combo[3]:GetInt() == 5 then
+                g_Render:Image(imageloaded[17], Vector2.new(menu_pos.x+800, menu_pos.y+250), imagesize[17]) 
+                end end end end end
+                if custompng[1]:GetBool() then
+                 g_Render:Image(image_loaded_custom, Vector2.new(menu_pos.x + custompng[6]:GetInt(), menu_pos.y + custompng[7]:GetInt()), image_size_custom)
+                end
+ end
+--ct
+if otherfeatures[2]:GetBool() then
+if g_EngineClient:IsConnected() then
+    local netchann_info = g_EngineClient:GetNetChannelInfo()
+  if netchann_info == nil then 
+    return
+  end
+
+  local raw_latency = netchann_info:GetLatency(0)
+  local latency = raw_latency / g_GlobalVars.interval_per_tick
+  local tickcount_pred = g_GlobalVars.tickcount + latency
+  local iter = math.floor(mod(tickcount_pred / 25, #tag))
+  if iter ~= last_tag_iter then 
+    set_clantag(tag[iter], tag[iter])
+    last_tag_iter = iter
+  end
+  end
+  end
+--ct
+--killcount
+if otherfeatures[3]:GetBool() then
+ if g_EngineClient:IsConnected() then
+  local i = 0
+  local addx = 0
+  if killcount > 0 then
+    while i < killcount do
+      g_Render:Image(imageloaded[99], Vector2.new(screen_size.x / 3 + addx, screen_size.y - 57), imagesize[99])
+      i = i + 1
+      addx = addx + 60
+      end
+   end
+ end
+end
+--killcount
+end
+
+local function customhitsound(event)
+ if otherfeatures[1]:GetBool() then
+  if event:GetName() == "player_hurt" then
+   if g_EngineClient:GetPlayerForUserId(event:GetInt("attacker", 0)) == g_EngineClient:GetLocalPlayer() then
+    g_EngineClient:ExecuteClientCmd("play bubble.wav")
+   end
+  end
+  g_Config:FindVar("Visuals", "World", "Hit", "Hit Sound"):SetBool(false)
+ end
+--kc
+if event:GetName() == "player_death" then
+        local victim = g_EngineClient:GetPlayerForUserId(event:GetInt("userid"))
+        local attacker = g_EngineClient:GetPlayerForUserId(event:GetInt("attacker"))
+        if victim ~= attacker and attacker == g_EngineClient:GetLocalPlayer() then
+            killcount = killcount + 1
+        end
+        if attacker ~= g_EngineClient:GetLocalPlayer() and victim ==  g_EngineClient:GetLocalPlayer() or victim == attacker and attacker == g_EngineClient:GetLocalPlayer() then
+            killcount = 0
+        end
+    end
+ if event:GetName() == "round_start" then
+  killcount = 0
+ end
+ if g_EngineClient:IsConnected() == false then
+  killcount = 0
+ end
+ --kc
+end
+
+cheat.RegisterCallback("draw", animegirls)
+cheat.RegisterCallback("events", customhitsound)
